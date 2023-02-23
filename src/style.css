@@ -92,33 +92,40 @@ Container-aside
     padding-inline: 0vw 4vw ;
 }
 li{
-
     margin-bottom: 10px;
     list-style: none;
 }
 .aside li{
-    padding:1px 3px;
     cursor: pointer;
     border: 1px solid #f8a931;
     border-radius: 10px;
-    font-size: 1.35rem;
-    align-items: center;
-    gap: 10px;
-    display: flex;  
+    display: grid;
+    justify-content: stretch;
     
 }
-.aside a{
+
+.aside button{
+    border-radius: 10px;
+    padding:1px 3px;
+    font-size: 1.30rem;
     color: white;
-    text-decoration: none;
+    gap: 10px;
+    align-items: center;
+    display: flex;  
+}
+.aside button:hover{
+    background-color:#f1c27b36;
+    cursor: pointer;
+
 }
 /*------------------
-tasktitle
+todotitle
 -------------------------------*/
-.taskCont{
+.todoCont{
     flex: 3;
     margin-left: 5vw;
 }
-.tasksHead{
+.todosHead{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -139,7 +146,7 @@ tasktitle
     border: 0;
 
 }
-#taskSearch{
+#todoSearch{
     color: white;
     background-color: black;
     border: 2px solid #f8a931;
@@ -154,40 +161,66 @@ tasktitle
 }
 
 /*-- -------------
-tasklist
+todolist
 ----------------------*/
 
-.taskList{
+.todoList{
 
     padding-inline: 1vw;
     display: flex;
     flex-direction: column;
 }
-.task{
+.todoList>div{
+
+    margin-bottom: 10px;
+}
+.todo{
     padding-inline: 10px;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
     border-radius: 15px;
     border: 1px solid rgb(58, 57, 57);
     display: flex;
 
 }
-.taskC{
+.todoC{
     align-items: center;
     display: flex;
     gap: 10px;
+    place-content: center;
 }
-.taskC h2{
+.todoC h2{
     margin: 0;
 }
+
+.details{
+    box-shadow: 2px 2px 3px 0px #ff9800;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: rgb(210 208 208);
+    border: 1px solid  #908989;
+    border-top: 0px;
+    gap: 5px;
+    margin: 5px 30px;
+    padding-inline: 10px;
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;    
+}
+.details>*{
+    margin: 0;
+}
+.details>p{
+    grid-column: 1/3;
+}
+
+
 /*-------------
 buttons windows
 --------------------*/
 iframe{
     display: none;
 }
-.toadd{
+.formbg{
     z-index: 1;
     position:fixed;
     height: 100vh;
@@ -198,7 +231,7 @@ iframe{
     display: grid;
     place-content: center;
 }
-.addform{
+.addform, .editform{
     display: flex;
     justify-content: center;
     min-width: 350px;
@@ -207,58 +240,85 @@ iframe{
     padding: 10px;
     background-color: #2e2e30;
 }
-.myform{
+.todoaddform, .todoEditform{
     max-width: 34vw;
     display: grid;
     gap: 20px;
     grid-template-columns: 1fr 1fr;
     place-content: center;
 }
-.myform input, #description{
+.description, .todoaddform input, .todoEditform input{
     color: white;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     border-bottom: solid 1px var(--light-blue);
 }
-.myform>div{
+.todoEditform input, .description{
+    border-bottom: solid 1px #ffa742;
+}
+.todoaddform>div, .todoEditform>div{
     align-items: center;
     display: grid;
 }
-.myform>div:last-child{
+.todoaddform>div:last-child, .todoEditform>div:last-child{
     gap: 18px;
     align-content: center;
     display: grid;
 }
-#priority, #tags, .formb{
-
-border: solid 1px var(--light-blue);
-    color: white;
+.priority, .tags, .formb{
+   
     background-color: rgba(0, 0, 0, 0);
     
+}
+#addpriority, #addtag{
+    color: white;
+    border: solid 1px var(--light-blue);
+
+}
+#editpriority, #edittag{
+    color: white;
+    border: solid 1px #ffa742;
 }
 option, optgroup{
     background-color: rgba(0, 0, 0, 0.658);
 }
-form>div:last-child{
-    display: flex;
-    justify-content: center;
-    
-}
 .formb{
-    color: var(--light-blue);
+    justify-self: center;
     border-radius: 10px;
     padding: 10px 30px;
 }
-#description{
+.editform .formb{
+    color: #ffa742;
+    border: solid 1px #ffa742;
+}
 
+.addform .formb{
+    color: var(--light-blue);
     border: solid 1px var(--light-blue);
+}
+
+.description{
     resize: none;
     overflow: auto;
 }
+.addform .description{
+    border: solid 1px var(--light-blue);
+}
+.editform .description{
+    border:solid 1px #ffa742;
+}
 
-#tname:focus, select:focus, #description:focus, #tdate:focus, #priority:focus, #tags:focus{
+.tname:focus, select:focus, .description:focus, .tdate:focus, .priority:focus, .tags:focus{
     outline: none;
-    background-color: rgba(165, 204, 209, 0.281);
+
+}
+.addform :is(.tname:focus, select:focus, .description:focus, .tdate:focus, .priority:focus, .tags:focus){
+    background-color: rgba(136, 226, 238, 0.281);
+
+}
+.editform :is(.tname:focus, select:focus, .description:focus, .tdate:focus, .priority:focus, .tags:focus){
+
+    background-color: rgba(223, 199, 173, 0.281);
 
 }
 .hidden{
@@ -301,10 +361,17 @@ Animations
     transform-origin: 50% 0;
     animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
+.addedinfo{
+    transform-origin: 50% 0;
+    animation: slide-in-topp 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
 .removed{
-    
     transform-origin: 50% 0;
     animation: slide-in-bot 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.removedinfo{
+    transform-origin: 50% 0;
+    animation: slide-in-bott 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 @keyframes slide-in-top {
     0% {
@@ -318,6 +385,18 @@ Animations
               transform: scaleY(1);
     }
   }
+  @keyframes slide-in-topp {
+    0% {
+
+    margin-bottom: -30px;
+              transform: scaleY(0);
+    }
+    100% {
+
+    margin-bottom: 0px;
+              transform: scaleY(1);
+    }
+  }
   @keyframes slide-in-bot {
     0% {
 
@@ -328,6 +407,17 @@ Animations
         margin-bottom: -20px;
         transform: scaleY(0);
         display: none;
+    }
+  }
+  @keyframes slide-in-bott {
+    0% {
+        margin-bottom: 0px;
+        transform: scaleY(1);
+    }
+    100% {
+
+        margin-bottom: -50px;
+        transform: scaleY(0);
     }
   }
 
@@ -405,7 +495,7 @@ Animations
     #aside{
         display: none;
     }
-    .tasksHead{
+    .todosHead{
         flex-direction: column;
 
     }
