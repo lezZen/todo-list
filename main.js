@@ -12,7 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ addLeadingZeros)
 /* harmony export */ });
-function addLeadingZeros(number, targetLength) {
+function addLeadingZeros(number, targetLength){
   var sign = number < 0 ? '-' : '';
   var output = Math.abs(number).toString();
 
