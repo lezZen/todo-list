@@ -1,4 +1,4 @@
-export function editTodofunc(todo){ 
+export function editTodofunc(todo, todolist){ 
   const editformbg= document.querySelector('.editTodo')
   editformbg.classList.remove('hidden')
   const editform = document.querySelector('.todoEditform')
@@ -20,6 +20,7 @@ export function editTodofunc(todo){
       const values = [] 
       editinputs.forEach(input=> values.push(input.value))
       todo.editTodo(...values)
+      todolist.updateStorage()
       editformbg.classList.add('hidden')
       const h2name= todo.element.querySelector('h2')
       h2name.textContent = todo.name

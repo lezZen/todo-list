@@ -1,3 +1,5 @@
+import { format, parseISO } from "date-fns"
+
 const InfoT = function(){
     const infocont= document.createElement('div')
     infocont.classList.add('details')
@@ -8,9 +10,9 @@ const InfoT = function(){
     const infodescription= document.createElement('p')
 
     function addtext(todo){
-
+    console.log(todo)
     infoname.textContent= todo.name;
-    infodate.textContent= todo.date;
+    infodate.textContent= format(parseISO(todo.date), "Pp");
     infotype.textContent= todo.type;
     infopriority.textContent= todo.priority;
     infodescription.textContent= todo.description;

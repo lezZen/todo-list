@@ -23,7 +23,7 @@ export function manageIconsEvents(todo, todolist, infoIcon, editIcon, deleteIcon
         }
     })
     editIcon.addEventListener('click', e=>{      
-    editTodofunc(todo)   
+    editTodofunc(todo, todolist)   
 
     })
     deleteIcon.addEventListener('click', e=>{
