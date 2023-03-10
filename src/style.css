@@ -87,6 +87,7 @@ Container-aside
 }
 .aside{
     flex: 1;
+    font-size:  1.30rem;
 }
 .aside ul{
     padding-inline: 0vw 4vw ;
@@ -103,20 +104,49 @@ li{
     justify-content: stretch;
     
 }
-
+nav button{
+    display: flex;  
+}
 .aside button{
+    
     border-radius: 10px;
     padding:1px 3px;
     font-size: 1.30rem;
     color: white;
     gap: 10px;
     align-items: center;
-    display: flex;  
 }
 .aside button:hover{
     background-color:#f1c27b36;
     cursor: pointer;
 
+}
+.addProject{
+    padding-inline:1vw  5vw;
+}
+.addProject>div:first-child{    
+    border-bottom:  1px solid #756f64;
+    text-align: center;
+    
+}
+.newProjects{
+    display: grid;
+    justify-items: start;
+    max-height: 20vh;
+    overflow: auto;
+    word-wrap: break-word;
+}
+.newProjects>button{
+    max-width: 15ch;
+}
+.addProjectButton:hover:active{
+    background-color: #00993bfd;
+}
+.newProjectName{
+    color: rgb(241, 206, 142);
+    outline: none;
+    border: none;
+    background-color: rgba(70, 66, 66, 0.849);
 }
 /*------------------
 todotitle
@@ -130,8 +160,12 @@ todotitle
     justify-content: space-between;
     align-items: center;
 }
-
+.todosHead h1{
+    max-width: 20ch;
+    word-wrap: break-word;
+}
 .S-F{
+    position: relative;
     display: flex;
     gap: 10px;
     align-items: center;
@@ -157,6 +191,7 @@ todotitle
     position: relative;
 }
 .searchBar svg{
+    opacity: 0.5;
     position: absolute;
 }
 
@@ -335,7 +370,7 @@ option, optgroup{
 .sortMenu{
     z-index: 1;
     position: absolute;
-    right: 3vw;
+    right: -2vw;
 }
 .sortMenu ul{
     margin: 0;
