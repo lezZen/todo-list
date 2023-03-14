@@ -1,7 +1,7 @@
 import deleteIcon from './svg/delete-1-svgrepo-com.svg'
 import editIcon from './svg/edit-2-svgrepo-com.svg'
 import infoIcon from './svg/info-circle-svgrepo-com.svg'
-import { manageIconsEvents } from './icons/manageIconsEvents'
+import { manageIconsEvents } from './iconsFunctions/manageIconsEvents'
 
 
 function createTodoDOM(todolist, todo){
