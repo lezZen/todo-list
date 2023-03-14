@@ -10,6 +10,18 @@ function createTodoDOM(todolist, todo){
     const todoAndDetails= document.createElement('div')
     const todoContainer= document.createElement('div')
 
+    switch(todo.priority){
+        case 'High':
+            todoContainer.classList.add("High-Priority")
+            break;
+        case 'Medium':
+            todoContainer.classList.add("Medium-Priority")
+            break;
+        case 'Low':
+            todoContainer.classList.add("Low-Priority")
+            break;
+    }
+
     todo.element= todoAndDetails
 
     todoContainer.classList.add('todo')

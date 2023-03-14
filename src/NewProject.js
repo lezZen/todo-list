@@ -36,8 +36,6 @@ const NewProjectObj= function(){
   }
   function loadFromStorage(){
     const projectsFromStorage= (localStorage.getItem('projects').split(","))
-    console.log(projectsFromStorage)
-    console.log(localStorage.getItem('projects'))
     projectsFromStorage.forEach(project=>{
       projects.push(project)      
       const thisProjectButton= document.createElement('button')

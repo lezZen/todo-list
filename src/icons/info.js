@@ -10,7 +10,6 @@ const InfoT = function(){
     const infodescription= document.createElement('p')
 
     function addtext(todo){
-    console.log(todo)
     infoname.textContent= todo.name;
     infodate.textContent= format(parseISO(todo.date), "Pp");
     infotype.textContent= todo.type;
