@@ -4657,11 +4657,11 @@ function getDataFromStorage(){
     _todoListObject__WEBPACK_IMPORTED_MODULE_1__.mytodolist.addTodoFromStorage(mytodo)
    
 })
-filterBy[0].click() 
 _NewProject__WEBPACK_IMPORTED_MODULE_4__["default"].loadFromStorage()
   }else{
     return
   }
+  filterBy[0].click()
 }
 
 function AddFormInputsValue(){
