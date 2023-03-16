@@ -56,6 +56,7 @@ searchBar.addEventListener('keydown', e=>{
 borgarAndSortMenuEventListener()
 
 getDataFromStorage()
+filterBy[0].click() 
 
 function getDataFromStorage(){
   if(isLocalStorageAvaible()){
@@ -66,7 +67,6 @@ function getDataFromStorage(){
     mytodolist.addTodoFromStorage(mytodo)
    
 })
-filterBy[0].click() 
 NewProject.loadFromStorage()
   }else{
     return
