@@ -1,4 +1,4 @@
-import manageDisplayedTodos from "./todosVisibilityControl";
+import manageTodosDisplayed from "./todosVisibilityControl";
 import { mytodolist } from "./todoListObject";
 
 const NewProjectObj= function(){
@@ -45,7 +45,7 @@ const NewProjectObj= function(){
       newOption.textContent= project
       newProjects.insertBefore(thisProjectButton, newProjects.lastElementChild);
       thisProjectButton.addEventListener('click', e=> {
-        manageDisplayedTodos.Filter(mytodolist.filterByType(thisProjectButton.textContent), thisProjectButton.textContent)
+        manageTodosDisplayed.Filter(mytodolist.filterByType, thisProjectButton.textContent,thisProjectButton.textContent)
       })
       customTypeOptgroup.forEach(s=> s.appendChild(newOption))
     })
@@ -62,7 +62,7 @@ const NewProjectObj= function(){
     projects.push(newProjectName.textContent)
     localStorage.setItem('projects', projects)
     thisProjectButton.addEventListener('click', e=> {
-      manageDisplayedTodos.Filter(mytodolist.filterByType(thisProjectButton.textContent), thisProjectButton.textContent)
+      manageTodosDisplayed.Filter(mytodolist.filterByType(thisProjectButton.textContent), thisProjectButton.textContent)
     
     })
     customTypeOptgroup.forEach(s=> s.appendChild(newOption))

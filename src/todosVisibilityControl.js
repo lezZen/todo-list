@@ -3,18 +3,22 @@ import { compareAsc, parseISO } from "date-fns";
 const visibilityControl = function(){
     const h1= document.querySelector('h1')
   const parent= document.querySelector('.todoList') 
-  const filterBy = document.querySelectorAll('nav button')
+  let currentFilter;
   let currentTodos;
 
-  function Filter(todosTarget, title){
+  function Filter(todosTargetMethod, title, type){
     const todolistElements= document.querySelectorAll('.todoList .added')
-    currentTodos= todosTarget
+    if(type)currentFilter= todosTargetMethod.bind(null,type)
+    else currentFilter= todosTargetMethod
+    currentTodos= currentFilter()
     h1.textContent= title
     todolistElements.forEach(todo=> todo.remove())
-    todosTarget.forEach(todo=> parent.appendChild(todo.element))
+    currentTodos.forEach(todo=> parent.appendChild(todo.element))
   }
   function Sort(e){
+    currentTodos= currentFilter()
     let sortedTodos;
+    let todolistElements;
     switch(e.target.id){
         case 'sortName':
           currentTodos.forEach(todo=> todo.element.remove())
@@ -29,13 +33,16 @@ const visibilityControl = function(){
              }
              return 0
           })
+          todolistElements= document.querySelectorAll('.todoList .added')
+          todolistElements.forEach(todo=> todo.remove())
           sortedTodos.forEach(todo=> parent.appendChild(todo.element))
           break;
 
         case 'sortTime':
           currentTodos.forEach(todo=> todo.element.remove())
           sortedTodos= currentTodos.sort((a,b)=> compareAsc(parseISO(a.date), parseISO(b.date)))
-         
+          todolistElements= document.querySelectorAll('.todoList .added')
+          todolistElements.forEach(todo=> todo.remove())
           sortedTodos.forEach(todo=> parent.appendChild(todo.element))
           break;
 
@@ -67,13 +74,15 @@ const visibilityControl = function(){
 
             return a-b
           })
-          console.log(sortedTodos)
+          todolistElements= document.querySelectorAll('.todoList .added')
+          todolistElements.forEach(todo=> todo.remove())
           sortedTodos.forEach(todo=> parent.appendChild(todo.element))
           break;
       }
 
   }
   function Search(value){
+    currentTodos= currentFilter()
     const regex = new RegExp(value, 'gi');
     const todolistElements= document.querySelectorAll('.todoList .added')
     const idk= currentTodos.filter(todo=>todo.name.match(regex))
@@ -83,5 +92,5 @@ const visibilityControl = function(){
   }
   return {Filter, Sort, Search}
 }
-const manageDisplayedTodos= visibilityControl()
-export default manageDisplayedTodos;
+const manageTodosDisplayed= visibilityControl()
+export default manageTodosDisplayed;

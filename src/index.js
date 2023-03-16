@@ -3,7 +3,7 @@ import { mytodolist } from './todoListObject';
 import  Todo  from './todoObject'
 import {isLocalStorageAvaible} from './localStorageTest'
 import NewProject from './NewProject';
-import manageDisplayedTodos from './todosVisibilityControl';
+import manageTodosDisplayed from './todosVisibilityControl';
 import { borgarAndSortMenuEventListener } from './menus';
 const addTodobutton= document.querySelector('.add')
 const cancel= document.querySelector('.addcancelB')
@@ -27,18 +27,18 @@ todoAddform.addEventListener('submit', e=>{
 
 const filterBy = document.querySelectorAll('nav button')
 filterBy[0].addEventListener('click', e=>{
-  manageDisplayedTodos.Filter(mytodolist.noFilter(),"All")
+  manageTodosDisplayed.Filter(mytodolist.noFilter,"All")
 })
 filterBy[1].addEventListener('click', e=>{
-  manageDisplayedTodos.Filter(mytodolist.filterByDay(), 'Today')
+  manageTodosDisplayed.Filter(mytodolist.filterByDay, 'Today')
 })
 filterBy[2].addEventListener('click', e=>{
-  manageDisplayedTodos.Filter(mytodolist.filterByWeek(), 'This week')
+  manageTodosDisplayed.Filter(mytodolist.filterByWeek, 'This week')
 })
 for(let i=3; i<8;i++){
 filterBy[i].addEventListener('click', 
 e=>{
-  manageDisplayedTodos.Filter(mytodolist.filterByType(filterBy[i].textContent.trim()),filterBy[i].textContent)
+  manageTodosDisplayed.Filter(mytodolist.filterByType,filterBy[i].textContent, filterBy[i].textContent.trim())
 })
 }
 
@@ -49,7 +49,7 @@ addprojectB.addEventListener('click', NewProject.create);
 const searchBar= document.getElementById('todoSearch')
 searchBar.addEventListener('keydown', e=>{
   if(e.key=== 'Enter'){
-    manageDisplayedTodos.Search(searchBar.value)
+    manageTodosDisplayed.Search(searchBar.value)
   }
 })
 
@@ -64,8 +64,9 @@ function getDataFromStorage(){
     const mytodo= new Todo(name, date, type, priority, description)
     createTodoDOM(mytodolist,mytodo)
     mytodolist.addTodoFromStorage(mytodo)
-    filterBy[0].click() 
+   
 })
+filterBy[0].click() 
 NewProject.loadFromStorage()
   }else{
     return
