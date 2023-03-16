@@ -4647,6 +4647,7 @@ searchBar.addEventListener('keydown', e=>{
 ;(0,_menus__WEBPACK_IMPORTED_MODULE_6__.borgarAndSortMenuEventListener)()
 
 getDataFromStorage()
+filterBy[0].click()
 
 function getDataFromStorage(){
   if((0,_localStorageTest__WEBPACK_IMPORTED_MODULE_3__.isLocalStorageAvaible)()){
@@ -4661,7 +4662,6 @@ _NewProject__WEBPACK_IMPORTED_MODULE_4__["default"].loadFromStorage()
   }else{
     return
   }
-  filterBy[0].click()
 }
 
 function AddFormInputsValue(){
