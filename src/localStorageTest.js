@@ -1,11 +1,11 @@
-export function isLocalStorageAvaible(){
-    let test= 'test';
+export function isLocalStorageAvailable() {
     try {
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
-        return true;
+      const testKey = "test";
+      localStorage.setItem(testKey, testKey);
+      localStorage.removeItem(testKey);
+      return true;
+    } catch (e) {
+      return false;
     }
-    catch (e) {
-      return false
-}
-}
+  }
+  

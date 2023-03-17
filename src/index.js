@@ -1,7 +1,7 @@
 import createTodoDOM from './createTodoDOM'
 import { mytodolist } from './todoListObject';
 import  Todo  from './todoObject'
-import {isLocalStorageAvaible} from './localStorageTest'
+import {isLocalStorageAvailable} from './localStorageTest'
 import NewProject from './NewProject';
 import manageTodosDisplayed from './todosVisibilityControl';
 import { borgarAndSortMenuEventListener } from './menus';
@@ -16,8 +16,8 @@ addTodobutton.addEventListener('click', e=>{
 cancel.addEventListener('click', e=> addFormCont.classList.add('hidden'))
 
 const todoAddform= document.querySelector('.todoaddform')
-
 todoAddform.addEventListener('submit', e=>{
+    e.preventDefault();
     const values= AddFormInputsValue()
     const mytodo= new Todo(...values)
     mytodolist.addtodo(mytodo)
@@ -59,15 +59,15 @@ getDataFromStorage()
 filterBy[0].click() 
 
 function getDataFromStorage(){
-  if(isLocalStorageAvaible()){
+  if(isLocalStorageAvailable()){
+    NewProject.loadFromStorage()
+    if(localStorage.getItem('elements')){
   JSON.parse(localStorage.getItem('elements')).forEach(es=>{
     const { name, date, type, priority,description } = es
     const mytodo= new Todo(name, date, type, priority, description)
     createTodoDOM(mytodolist,mytodo)
     mytodolist.addTodoFromStorage(mytodo)
-   
-})
-NewProject.loadFromStorage()
+})}
   }else{
     return
   }

@@ -1,12 +1,12 @@
 import { isThisWeek, isToday, parseISO } from 'date-fns'
-import { isLocalStorageAvaible } from './localStorageTest'
+import { isLocalStorageAvailable } from './localStorageTest'
 
 const todolist = function(){
     let todos= []
    
      function addtodo(todo){
        todos.push(todo)
-       if(isLocalStorageAvaible())localStorage.setItem('elements', JSON.stringify(todos))
+       if(isLocalStorageAvailable())localStorage.setItem('elements', JSON.stringify(todos))
      
    }
    function addTodoFromStorage(todo){
@@ -15,11 +15,11 @@ const todolist = function(){
    function deletetodo(todo){
      const todoindex= todos.indexOf(todo)
      todos.splice(todoindex, 1)
-     if(isLocalStorageAvaible())localStorage.setItem('elements', JSON.stringify(todos))
+     if(isLocalStorageAvailable())localStorage.setItem('elements', JSON.stringify(todos))
    
    }
    function updateStorage(){
-    if(isLocalStorageAvaible())localStorage.setItem('elements', JSON.stringify(todos))
+    if(isLocalStorageAvailable())localStorage.setItem('elements', JSON.stringify(todos))
    }
    function filterByType(type){
     const filteredList= todos.filter(todo=> todo.type=== type)

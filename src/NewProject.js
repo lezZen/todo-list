@@ -1,5 +1,6 @@
 import manageTodosDisplayed from "./todosVisibilityControl";
 import { mytodolist } from "./todoListObject";
+import { isLocalStorageAvailable } from "./localStorageTest";
 
 const NewProjectObj= function(){
   const projects = []
@@ -12,11 +13,14 @@ const NewProjectObj= function(){
     newProjectName.contentEditable= 'true'
     thisProjectButton.appendChild(newProjectName)
     newProjects.insertBefore(thisProjectButton, newProjects.lastElementChild);
+    let edkcalled=false;
    
     newProjectName.addEventListener("blur", function() {
+      if(edkcalled) return
       if(!newProjectName.textContent.trim().length == 0){
         edk(newProjectName, thisProjectButton)
       }else{
+        newProjectName.remove()
         thisProjectButton.remove()
        }
     });
@@ -24,6 +28,7 @@ const NewProjectObj= function(){
       if(newProjectName.textContent.length>30) newProjectName.contentEditable="false"
       if(e.key=== 'Enter'){
         if(!newProjectName.textContent.trim().length == 0){
+          edkcalled= true;
           edk(newProjectName, thisProjectButton)
        }else{
         newProjectName.remove()
@@ -35,7 +40,9 @@ const NewProjectObj= function(){
 
   }
   function loadFromStorage(){
-    const projectsFromStorage= (localStorage.getItem('projects').split(","))
+    const dataProjectsFromStorage= localStorage.getItem('projects')
+    if(!dataProjectsFromStorage) return
+     const projectsFromStorage = dataProjectsFromStorage.split(",")
     projectsFromStorage.forEach(project=>{
       projects.push(project)      
       const thisProjectButton= document.createElement('button')
@@ -60,13 +67,13 @@ const NewProjectObj= function(){
     newOption.textContent= newProjectName.textContent
     thisProjectButton.textContent= newProjectName.textContent
     projects.push(newProjectName.textContent)
-    localStorage.setItem('projects', projects)
+    newProjectName.remove() 
+    if(isLocalStorageAvailable()) localStorage.setItem('projects', projects)
     thisProjectButton.addEventListener('click', e=> {
-      manageTodosDisplayed.Filter(mytodolist.filterByType(thisProjectButton.textContent), thisProjectButton.textContent)
-    
+      manageTodosDisplayed.Filter(mytodolist.filterByType, thisProjectButton.textContent, thisProjectButton.textContent)
     })
     customTypeOptgroup.forEach(s=> s.appendChild(newOption))
-    newProjectName.remove()
+ 
   }
   return{create, loadFromStorage}
   }
