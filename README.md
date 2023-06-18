@@ -1,12 +1,11 @@
-Todo-list
+<h1>Todo-list</h1>
 
 live: https://lezzen.github.io/todo-list/
-
-
+<h2>Overview</h2>
 This is a javascript project where I wanted to try a lot of new things that I had learned like webpack, css concepts like animations, positioning, media queries, javascript objects and module pattern. 
 
 
-Features:
+<h2>Features:</h2>
 
 -Each todo has an edit, delete and more info icon.
 
